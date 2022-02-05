@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Dcard 面試作業說明 - Annabelle Tai
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+###  `如何啟動`
 
-In the project directory, you can run:
+使用 npm 指令 `npm start` 之後，在瀏覽器開啟 [http://localhost:3000](http://localhost:3000) 。
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `作業架構設計`
 
-### `npm test`
+完成作業的順序為： 放假資料刻 UI -> 解決 API CORS -> 判斷滑到底部就撈資料
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**- 假資料刻 UI**
+> 因為當初判斷要解決 API CORS 的問題可能要花一些時間，所以先用假資料把 UI 設計好，並設計好 props 的接口。
 
-### `npm run build`
+**- 解決 API CORS**
+> 上網尋找方法大部分的建議是由後端設定開通，但因為這次只能透過 Client side 這邊解決，所以找到 [Stack Overflow](https://stackoverflow.com/questions/46337471/how-to-allow-cors-in-react-js) 的解決辦法，在 package.json 內加上 Dcard proxy 即可，但只能在開發環境上使用。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**- 判斷滑到底部就撈資料**
+> 初步的想法是，只要滑到最底部，就重新要 30 筆資料。所以在 window 綁上 scroll 的事件，偵測使用者是否將視窗滑到底部。一旦使用者滑到底部，就用上次拿的資料的最後一筆 ID 來要接下來的 30 筆。
